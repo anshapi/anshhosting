@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head><title>Ansh Hosting</title>
-  
+<head>
+  <title>AnshHosting</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AnshHosting</title>
   <style>
     body {
       margin: 0;
@@ -39,7 +38,7 @@
     }
     .upload-box button {
       padding: 0.6rem 1rem;
-      margin-left: 0.5rem;
+      margin-top: 1rem;
       background-color: #4f46e5;
       color: white;
       border: none;
@@ -63,26 +62,42 @@
     .upload-box a:hover {
       text-decoration: underline;
     }
+    #link {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
   </style>
 </head>
-  <body>
+<body>
   <div class="upload-box">
     <h1>AnshHosting</h1>
-    <input type="file" />
-    <button>Browse</button>
-    <p>Go To - <a href="t.me/anshapi">About</a> | <a href="#">API Page</a></p>
+    <input type="file" id="fileInput" />
+    <br>
+    <button onclick="upload()">Upload</button>
+    <div id="link"></div>
+    <p>Go To - <a href="https://t.me/anshapi" target="_blank">About</a> | <a href="#">API Page</a></p>
     <p>Made with ❤️ by - <a href="#">AnshApi</a></p>
   </div>
 
   <script>
     async function upload() {
       const file = document.getElementById('fileInput').files[0];
+      if (!file) return alert('Please select a file');
+
       const formData = new FormData();
       formData.append('file', file);
 
-      const res = await fetch('/upload', { method: 'POST', body: formData });
+      const res = await fetch('/upload', {
+        method: 'POST',
+        body: formData
+      });
+
       const data = await res.json();
-      document.getElementById('link').innerHTML = `Link: <a href="${data.url}" target="_blank">${data.url}</a>`;
+      if (data.success) {
+        document.getElementById('link').innerHTML = `✅ <a href="${data.url}" target="_blank">${data.url}</a>`;
+      } else {
+        document.getElementById('link').innerText = "Upload failed.";
+      }
     }
   </script>
 </body>
