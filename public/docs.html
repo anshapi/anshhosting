@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>API Documentation - AR Hosting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    .endpoint {
+      background: white;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-left: 5px solid #007BFF;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AR Hosting API Documentation</h1>
+
+  <div class="endpoint">
+    <h2>📤 Upload File</h2>
+    <p><strong>Endpoint:</strong> <code>POST /upload</code></p>
+    <p><strong>Description:</strong> Upload a file (max 20MB)</p>
+    <p><strong>Body:</strong> <code>multipart/form-data</code></p>
+    <p><strong>Response:</strong> JSON with file URL</p>
+  </div>
+
+  <div class="endpoint">
+    <h2>📥 Get File</h2>
+    <p><strong>Endpoint:</strong> <code>GET /uploads/:filename</code></p>
+    <p><strong>Description:</strong> Download or preview a file by its name</p>
+    <p><strong>Response:</strong> Raw file stream or redirect</p>
+  </div>
+
+</body>
+</html>
